@@ -2,8 +2,8 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="210mm"
-   height="297mm"
+   width="120mm"
+   height="120mm"
    viewBox="0 0 210 297"
    version="1.1"
    id="svg5"
@@ -13,9 +13,9 @@
   <defs
      id="defs2">
     <linearGradient
-       id="linearGradient3171">
+       id="linearGradient3170">
       <stop
-         style="stop-color:#008000;stop-opacity:1;"
+         style="stop-color:#008001;stop-opacity:1;"
          offset="0"
          id="stop3167" />
       <stop
