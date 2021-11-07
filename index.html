@@ -1,1 +1,163 @@
-first homework. Using git
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MIPT conference abstracts</title>
+    <meta charset="utf-8">
+    <meta name="author:" content="Daria Dorovskikh">
+    <style type="text/css">
+       TABLE {
+        background: black; /* Цвет фона таблицы */
+        color: black; /* Цвет текста */
+       }
+       TD, TH {
+        background: white; /* Цвет фона ячеек */
+        padding: 5px; /* Поля вокруг текста */
+       }
+    </style>
+    <style>
+    	    h1{text-align:center;color:black;}
+          h3{text-align:center;color:black;}
+          body{background-image:url("https://static.tildacdn.com/tild6165-3634-4434-a138-303164653730/1580481989_28-p-stil.jpg");}
+    </style>
+  </head>
+  <body>
+
+    <img src="https://mipt.ru/upload/medialibrary/df3/eng_base.png" width="180" height="100">
+
+    <div align="center">
+      <h1>
+        <article>
+          Application of Apache Solr technology in the cloud infrastructure
+          of NRC KI for the problem of information retrieval in large arrays
+          of specialized text data
+        </article>
+      </h1>
+      <h3>
+        <section>
+          <i>D. O. Dorovskikh</i>
+        </section>
+      </h3>
+      <h3>
+        <section>
+          Moscow Institute of Physics and Technology
+        </section>
+        <section>
+          (national research university)
+        </section>
+      </h3>
+    </div>
+    <h4>
+      <p>
+        The problem of information retrieval in large data sets has been
+        attracting researchers for more than a decade. The volume and variety
+        of data in which search is needed grows from year to year, which poses
+        new algorithmic and technological challenges for search. There are
+        various approaches to its solution, for example, Google is engaged
+        in Internet searches in large amounts of unstructured data, for storing
+        information about which it uses data centers in Europe, Asia, North and
+        South America. More than 900,000 servers operate within these centers
+        to support over 3 billion requests per day.
+      </p>
+      <p>
+        However, the search task is also relevant for scientific data, since
+        with the development of technologies for various experiments, more and
+        more information is generated in the course of scientific research
+        (hundreds of petabytes of data). In particular, after the development
+        of sequencing technologies, large arrays of genomic data appeared for
+        which the search task is also important.
+      </p>
+      <p>
+        One of the important areas of work in the UCC (United Computing Cluster)
+        NRC KI is working with big data. Specifically, NRC KI participates in
+        large-scale world scientific projects, such as the Large Hadron
+        Collider, the European X-ray Free Electron Laser, the National Genetic
+        Information Database, etc., which require efficient processing of data
+        arrays up to ten petabytes in size. An urgent task is to search for
+        records by metadata fields. For current experiments, it is planned to
+        store about 2 billion records with metadata, which in turn will occupy
+        about 100-200 TB.
+      </p>
+      <p>
+        Since the data of different databases is structured in various ways,
+        namely, they have different fields with a nested structure, the using
+        of traditional relational databases for this task seems inconvenient.
+      </p>
+      <p>
+        The work was performed on a server from a combined NRC KI cluster with
+        the following characteristics:
+      </p>
+      <div align="center">
+        <details>
+          <summary><i>Сharacteristics of the UCC</i></summary>
+          <table cellspacing="1">
+            <tr><td>CPU</td><td>Intel Xeon E7450, 24 cores</td></tr>
+            <tr><td>RAM</td><td>24 GB</td></tr>
+            <tr><td>file storage</td><td>500 TB</td></tr>
+            <tr><td>OS</td><td>Ubuntu Linux 20.04</td></tr>
+          </table>
+        </details>
+      </div>
+      <p>
+        Apache Solr software was chosen to organize the search engine. The data
+        from the Common Crawl project and the EBI WGS genetic bank of reference
+        genomes were used as test data sets. From the Common Crawl open source
+        web crawl data repository, data was extracted for working out the
+        solution - files in the WET format. From the open genomic database
+        EGI WGS, an array of metadata of reference genomic sequences was
+        obtained, with a volume of more than 700 thousand records (4 GB).
+      </p>
+      <p>
+        The Python warcio library was used to extract text data from a file in
+        WET format. Using the Python lxml library, the text data was converted
+        to XML format. The Python PySolr library was applied to index documents
+        in Apache Solr. A JavaScript React library for creating user interfaces
+        was also used.
+      </p>
+      <p>
+        As a result of the work, a search engine based on the Apache Solr
+        full-text search system was deployed. Also, (I) we managed to verify
+        that the functionality of Apache Solr is quite suitable for organizing
+        a search system for genomic metadata.
+      </p>
+      <p>
+        A web interface based on the JavaScript React library has been created
+        to display search results.
+      </p>
+      <p>
+        Measuring the productivity of the search engine shows that with an
+        increase in the number of documents in a collection with one node and
+        one shard, the average search time for a query grows, which becomes
+        critical when data is constantly being added to the system.
+      </p>
+      <p>
+        However, by deploying the search engine to more nodes, (you can
+        compensate for this disadvantage) the disadvantage may be compensated.
+        With an increase in the number of shards for the same amount of data,
+        the average search time for a query decreases.
+      </p>
+    </h4>
+    <div align="center">
+      <h3>
+        <section>
+          List of references
+        </section>
+      </h3>
+    </div>
+    <h4>
+      <i>
+        <ol>
+          <li>Smiley D. et al. Apache Solr enterprise search server.
+            – Packt Publishing Ltd, 2015.</li>
+          <li>Solr C. A. Apache Solr Reference Guide //2014-10-13].
+            <a href="https://archive.apache.org/dist/lucene/solr/ref-guide/apache-solr-ref-guide-4.10.pdf">apache-solr-ref-guide-4.10</a></li>
+          <li>Luccioni A. S., Viviano J. D. What's in the Box? An Analysis
+            of Undesirable Content in the Common Crawl Corpus //arXiv preprint
+            arXiv:2105.02732. – 2021.</li>
+          <li>Goujon M. et al. A new bioinformatics analysis tools framework
+            at EMBL–EBI //Nucleic acids research. – 2010. – Т. 38. – №. suppl_2.
+            – С. W695-W699.</li>
+        </ol>
+      </i>  
+    </h4>
+  </body>
+</html>
