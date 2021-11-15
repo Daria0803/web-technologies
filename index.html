@@ -4,27 +4,66 @@
     <title>MIPT conference abstracts</title>
     <meta charset="utf-8">
     <meta name="author:" content="Daria Dorovskikh">
-    <style type="text/css">
-       TABLE {
+    <style>  /* type="text/css"*/
+        table {
         background: black; /* Цвет фона таблицы */
         color: black; /* Цвет текста */
        }
-       TD, TH {
+        td, th {
         background: white; /* Цвет фона ячеек */
         padding: 5px; /* Поля вокруг текста */
        }
+       .table1 {display: inline; position: static;}
     </style>
     <style>
-    	    h1{text-align:center;color:black;}
-          h3{text-align:center;color:black;}
-          body{background-image:url("https://static.tildacdn.com/tild6165-3634-4434-a138-303164653730/1580481989_28-p-stil.jpg");}
+          :root {
+            --main-color: #00539F
+          }
+
+          html {
+            background-color: var(--main-color);
+            font-size: 20px
+          }
+
+          img[src] {position: relative; top: 10px; right: 10px;}
+    	    h1, h3 {text-align:center; color:black}
+          h1 + h3 {font-style:italic}
+          *[class^=head] {display: block; font-size: 0.9em; line-height: 1.4; letter-spacing: 0.2px}
+          h1 {
+            margin: 0;
+            padding: 20px 0;
+            color: var(--main-color);
+            text-shadow: 1px 1.5px 3px #004E93;
+          }
+          .main {font-size: 17px; line-height: 1.5; letter-spacing: 0.5px;}
+          h4 #list1 {font-style:italic}
+          details:hover {color: var(--main-color)}
+          a:link {color: var(--main-color);}
+          a:visited{color: rebeccapurple;}
+          p::first-letter {font-size: calc(17px + 10%);}
+
+          body {
+            width: 70vw;
+            display: block;
+            margin: 0 auto;
+            padding: 0 20px 20px 20px;
+            border: 0.3cm solid #023868;
+            background-image:url("https://catherineasquithgallery.com/uploads/posts/2021-02/1613237152_222-p-fon-dlya-prezentatsii-svetlo-sinii-245.jpg");
+            background-size: cover;
+          }
+
+          /*https://static.tildacdn.com/tild6165-3634-4434-a138-303164653730/1580481989_28-p-stil.jpg
+            https://avatanplus.com/files/resources/original/5b6426fa65823164ff384230.jpg
+            https://pbs.twimg.com/media/EZ54wV7UYAAV6tw.jpg
+          */
+
     </style>
   </head>
   <body>
 
     <img src="https://mipt.ru/upload/medialibrary/df3/eng_base.png" width="180" height="100">
 
-    <div align="center">
+    <div class="headline">
       <h1>
         <article>
           Application of Apache Solr technology in the cloud infrastructure
@@ -33,19 +72,21 @@
         </article>
       </h1>
       <h3>
-        <section>
-          <i>D. O. Dorovskikh</i>
+        <section style="font-size: 0.85em">
+          D. O. Dorovskikh
+          <h3 style="font-size: 0.85em">
+              <section>
+                Moscow Institute of Physics and Technology
+              </section>
+              <section>
+                (national research university)
+              </section>
+          </h3>
         </section>
       </h3>
-      <h3>
-        <section>
-          Moscow Institute of Physics and Technology
-        </section>
-        <section>
-          (national research university)
-        </section>
-      </h3>
+
     </div>
+    <div class="main">
     <h4>
       <p>
         The problem of information retrieval in large data sets has been
@@ -86,10 +127,10 @@
         The work was performed on a server from a combined NRC KI cluster with
         the following characteristics:
       </p>
-      <div align="center">
+      <div class="table1" align="center">
         <details>
           <summary><i>Сharacteristics of the UCC</i></summary>
-          <table cellspacing="1">
+          <table class="table_center_by_css" cellspacing="1">
             <tr><td>CPU</td><td>Intel Xeon E7450, 24 cores</td></tr>
             <tr><td>RAM</td><td>24 GB</td></tr>
             <tr><td>file storage</td><td>500 TB</td></tr>
@@ -115,7 +156,7 @@
       </p>
       <p>
         As a result of the work, a search engine based on the Apache Solr
-        full-text search system was deployed. Also, (I) we managed to verify
+        full-text search system was deployed. Also, we managed to verify
         that the functionality of Apache Solr is quite suitable for organizing
         a search system for genomic metadata.
       </p>
@@ -136,28 +177,29 @@
         the average search time for a query decreases.
       </p>
     </h4>
-    <div align="center">
-      <h3>
-        <section>
+    <div class="list1_name">
+
+        <section style="font-size: 0.85rem">
+          <h3>
           List of references
+          </h3>
+          <h4 style="font-size: 0.85rem">
+            <ol id="list1">
+              <li>Smiley D. et al. Apache Solr enterprise search server.
+                – Packt Publishing Ltd, 2015.</li>
+              <li>Solr C. A. Apache Solr Reference Guide //2014-10-13].
+                <a href="https://archive.apache.org/dist/lucene/solr/ref-guide/apache-solr-ref-guide-4.10.pdf">apache-solr-ref-guide-4.10</a></li>
+              <li>Luccioni A. S., Viviano J. D. What's in the Box? An Analysis
+                of Undesirable Content in the Common Crawl Corpus //arXiv preprint
+                arXiv:2105.02732. – 2021.</li>
+              <li>Goujon M. et al. A new bioinformatics analysis tools framework
+                at EMBL–EBI //Nucleic acids research. – 2010. – Т. 38. – №. suppl_2.
+                – С. W695-W699.</li>
+            </ol>
+          </h4>
         </section>
-      </h3>
+
     </div>
-    <h4>
-      <i>
-        <ol>
-          <li>Smiley D. et al. Apache Solr enterprise search server.
-            – Packt Publishing Ltd, 2015.</li>
-          <li>Solr C. A. Apache Solr Reference Guide //2014-10-13].
-            <a href="https://archive.apache.org/dist/lucene/solr/ref-guide/apache-solr-ref-guide-4.10.pdf">apache-solr-ref-guide-4.10</a></li>
-          <li>Luccioni A. S., Viviano J. D. What's in the Box? An Analysis
-            of Undesirable Content in the Common Crawl Corpus //arXiv preprint
-            arXiv:2105.02732. – 2021.</li>
-          <li>Goujon M. et al. A new bioinformatics analysis tools framework
-            at EMBL–EBI //Nucleic acids research. – 2010. – Т. 38. – №. suppl_2.
-            – С. W695-W699.</li>
-        </ol>
-      </i>  
-    </h4>
+  </div>
   </body>
 </html>
