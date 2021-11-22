@@ -14,13 +14,13 @@
         greetings(); // Hello World!
         //console.log(hello); // ReferenceError: hello is not defined
 
-        function fnumbers(numbers){
-          for(var i = 0; i < numbers.length; i++){
-            var v_num = numbers[i];
-            let l_num = numbers[i];
+        function fnumbers(array){
+          for(var i = 0; i < array.length; i++){
+            var v_num = array[i];
+            let l_num = array[i];
           }
           var nsum = 0;
-          for(let j of numbers){
+          for(let j of array){
             nsum = nsum + j;
           }
           let dict = {"blah": 1, "c": 2};
@@ -36,6 +36,13 @@
         }
         globalThis["numbers"] = [10, 20, 30, 40, 50];
         fnumbers(numbers);
+        console.log(numbers);
+        {
+          for (let k of numbers){
+            console.log(k);
+          }
+        }
+        console.log(numbers);
         delete numbers;
         //console.log(numbers); // ReferenceError: numbers is not defined
 
