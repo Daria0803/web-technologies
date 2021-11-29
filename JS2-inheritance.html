@@ -5,7 +5,7 @@
   </head>
   <body>
     <script type="text/javascript">
-        "strict mode";
+        "use strict";
 
         function Animal(name) {
             this.name = name;
@@ -37,6 +37,25 @@
 
         rabbit1.move();
         animal.move();
+
+        /***********************/
+        function Machine(speed) {
+          this.speed = speed;
+        }
+
+        Machine.prototype.quick = function() {
+          console.log(`machine speed is ${this.speed}`);
+        }
+
+        class Motorbike extends Machine {
+          quick() {
+            console.log(`motorbike speed is ${this.speed}`);
+          }
+        }
+
+        let moto = new Motorbike(130);
+        moto.quick();
+        /**********************/
 
         /*вызвать метод с чужим объектом*/
         function Hamster(name){
@@ -128,7 +147,7 @@
         });
 
         console.log(obj.a2);
-        obj.a2 = "changed";
+        //obj.a2 = "changed";
         console.log(obj.a2); // "Property a2 defined" (not "changed")
 
         let child = new Person('Sally');
@@ -137,7 +156,7 @@
         Object.defineProperty(child, 'height', {
           enumerable: true,
           configurable: true,
-          get: function() { return growth}
+          get: function() { return growth;}
         });
 
         console.log(child.height);
@@ -145,7 +164,7 @@
         Object.defineProperty(child, 'baby_teeth', {
           enumerable: false,
           configurable: false,
-          value: teeth_num = 13
+          value: 13
         });
 
         console.log(child.baby_teeth); // 13
@@ -174,7 +193,7 @@
         String.prototype.inBrackets = function() {
           console.log(`(${this})`);
         }
-        str = "comment";
+        let str = "comment";
         str.inBrackets();
         /**********************************/
 
@@ -224,6 +243,17 @@
          Object.assign(User2.prototype, sayByeMixin);
          let user2 = new User2("Ivan");
          user2.sayBye();
+
+         let MyMixin = (superclass) => class extends superclass {
+            hello() {
+              console.log('hello from MyMixin');
+            }
+          };
+
+         class MyBaseClass { };
+         class MyClass extends MyMixin(MyBaseClass) { };
+         let c = new MyClass();
+         c.hello(); // "hello from MyMixin"
 
     </script>
   </body>
