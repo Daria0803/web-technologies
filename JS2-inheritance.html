@@ -210,21 +210,6 @@
         let user = new User("Ivan");
         user.sayHi();
 
-        //let sayByeMixin = sayBye => console.log(`Bye ${this.name}`);
-        let sayByeMixin = {
-          sayBye() {
-            console.log(`Bye ${this.name}`);
-          }
-        };
-
-        function User2(name) {
-          this.name = name;
-        }
-
-        Object.assign(User2.prototype, sayByeMixin);
-        let user2 = new User2("Ivan");
-        user2.sayBye();
-
     </script>
   </body>
 </html>
