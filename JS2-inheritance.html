@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+        "strict mode";
+
+        function Animal(name) {
+            this.name = name;
+            this.canWalk = true;
+            this.distance = n;
+            console.log(`Animal's name is ${this.name}`);
+        }
+
+        var n = 5;
+        var animal = new Animal("mammal");
+
+        Animal.prototype.move = function() {
+          console.log(`animal distance is ${this.distance}`);
+        }
+
+        class Rabbit extends Animal {
+            move(){
+              console.log(`Rabbit moves with ${this.distance} distance`)
+            }
+        }
+        //Rabbit.prototype = animal;
+
+        let rabbit1 = new Rabbit('Fluffy');
+        let rabbit2 = new Rabbit('Jolly');
+
+        if (rabbit1.canWalk === true) console.log("rabbit1 can walk");
+        else console.log("rabbit1 can't walk");
+
+        rabbit1.move();
+        animal.move();
+
+        /*вызвать метод с чужим объектом*/
+        function Hamster(name){
+          Animal.call(this, name);
+        }
+
+        let hamster1 = new Hamster("hamster1");
+        /*******************************/
+
+        class Dog {
+          constructor(name, run, jump){
+            this.name = name;
+            this.run = run;
+            this.jump = jump;
+          }
+          barking(){
+            console.log(`${this.name} bow wow`);
+          }
+        }
+
+        class LazyDog extends Dog {
+          constructor(name, no){
+            super(name, no, no);
+          }
+
+          barking(){
+            console.log(`${this.name} is lazy!!!`);
+          }
+        }
+
+        let d = new LazyDog('Luna', 'no');
+        d.barking();
+        console.log(d);
+
+
+        class Person{
+          constructor(name) {
+            this.name = name;
+          }
+          introduce() {
+            console.log(`Hello, my name is ${this.name}`);
+          }
+        }
+
+        const Jack = new Person('Jack');
+        Jack.introduce();
+
+
+        const parent = {
+          name: 'Stacey',
+          age: 35,
+          heritage: 'Irish'
+        }
+
+        const child1 = Object.create(parent);
+        child1.name = 'Ryan';
+        child1.age = 7;
+
+        if (Object.getPrototypeOf(child1) === parent){
+          console.log(`child1 heritage is ${child1.heritage.toLowerCase()}`);
+        }
+        console.log(`child1 name is ${child1.name}`); // Ryan
+        console.log(`child1 age is ${child1.age}`); // 7
+        console.log(`child1 heritage ${child1.heritage}`); // Irish
+
+        let child2 = {name: 'Ryan', age: 7}
+        Object.setPrototypeOf(child2, parent);
+
+        console.log(`child2 heritage is ${child1.heritage.toLowerCase()}`);
+
+        /*свойства*/
+        var obj = {};
+
+        Object.defineProperty(obj, 'a1', {
+          value: "Hello",
+          writable: true,
+          enumerable: true,
+          configurable: true
+        });
+
+        obj.a1 += " world";
+        console.log(obj.a1);
+
+        Object.defineProperty(obj, 'a2', {
+          value: "Property a2 defined",
+          writable: false,
+          enumerable: true,
+          configurable: true
+        });
+
+        console.log(obj.a2);
+        obj.a2 = "changed";
+        console.log(obj.a2); // "Property a2 defined" (not "changed")
+
+        let child = new Person('Sally');
+        var growth = 158;
+
+        Object.defineProperty(child, 'height', {
+          enumerable: true,
+          configurable: true,
+          get: function() { return growth}
+        });
+
+        console.log(child.height);
+
+        Object.defineProperty(child, 'baby_teeth', {
+          enumerable: false,
+          configurable: false,
+          value: teeth_num = 13
+        });
+
+        console.log(child.baby_teeth); // 13
+        // console.log(Person.baby_teeth); // undefined
+
+
+        class Book{
+          constructor(name){
+            this.genre = name;
+          }
+          set check_genre(value){
+            console.log(`Передано ${value}`);
+            if (value > 200) this.genre = "novel";
+            else this.genre = "story";
+          }
+          get check_genre(){
+            return this.genre;
+          }
+        }
+        let book = new Book("roman");
+        book.check_genre = 201;
+        console.log(book.check_genre);
+        /**********************************/
+
+        /*создать новый метод у всех строк*/
+        String.prototype.inBrackets = function() {
+          console.log(`(${this})`);
+        }
+        str = "comment";
+        str.inBrackets();
+        /**********************************/
+
+        /*приватные методы обьекта*/
+        class ClassWithPrivateMethod {
+          #privateMethod() {
+            return 'hello from private method'
+          }
+
+          getPrivateMessage() {
+              return this.#privateMethod()
+          }
+        }
+
+        const instance = new ClassWithPrivateMethod();
+        console.log(instance.getPrivateMessage());
+        // console.log(instance.#privateMethod()); // error
+        /***************************/
+
+        /*Mixin*/
+        let sayMixin = {
+          sayHi() {
+            console.log(`Hello ${this.name}`);
+          },
+          sayBye() {
+            console.log(`Bye ${this.name}`);
+          }
+        };
+
+        class User {
+          constructor(name) {
+            this.name = name;
+          }
+        }
+
+        Object.assign(User.prototype, sayMixin); //coping methods
+        let user = new User("Ivan");
+        user.sayHi();
+        user.sayBye();
+    </script>
+  </body>
+</html>
