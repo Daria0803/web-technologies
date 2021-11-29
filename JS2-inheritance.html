@@ -11,7 +11,7 @@
             this.name = name;
             this.canWalk = true;
             this.distance = n;
-            console.log(`Animal's name is ${this.name}`);
+            //console.log(`Animal's name is ${this.name}`);
         }
 
         var n = 5;
@@ -21,8 +21,9 @@
           console.log(`animal distance is ${this.distance}`);
         }
 
-        class Rabbit extends Animal {
-            move(){
+        function Rabbit() {
+            Animal.call(this);
+            this.move = function(){
               console.log(`Rabbit moves with ${this.distance} distance`)
             }
         }
@@ -213,6 +214,7 @@
         let user = new User("Ivan");
         user.sayHi();
         user.sayBye();
+
     </script>
   </body>
 </html>
