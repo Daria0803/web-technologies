@@ -38,25 +38,6 @@
         rabbit1.move();
         animal.move();
 
-        /***********************/
-        function Machine(speed) {
-          this.speed = speed;
-        }
-
-        Machine.prototype.quick = function() {
-          console.log(`machine speed is ${this.speed}`);
-        }
-
-        class Motorbike extends Machine {
-          quick() {
-            console.log(`motorbike speed is ${this.speed}`);
-          }
-        }
-
-        let moto = new Motorbike(130);
-        moto.quick();
-        /**********************/
-
         /*вызвать метод с чужим объектом*/
         function Hamster(name){
           Animal.call(this, name);
@@ -255,6 +236,23 @@
          let c = new MyClass();
          c.hello(); // "hello from MyMixin"
 
+         /***********************/
+         function Employee() {
+           this.name = "";
+           this.dept = "general";
+         }
+
+         function Manager() {
+            Employee.call(this);
+            this.reports = [];
+         }
+
+         Manager.prototype = Object.create( Employee.prototype );
+
+         var m = new Manager();
+
+         console.log(m instanceof Employee); //true
+         /**********************/
     </script>
   </body>
 </html>
