@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<!--
+Использовать SVG для выполнения ДЗ	Создание элемента	Получение элементов по селектору	Получение элемента по селектору	Добавление нового элемента	Навигация по DOM	Создание текстового узла
+Создание фрагмента документа	Манипуляция атрибутами	Установка атрибута	Установка класса	Удаление класса	Установка ID	Изменение HMTL в текстовом виде	Демонстрация проблемы изменения HTML в текстовом виде	Переход к следующему узлу	Переход к предыдущему узлу	Узлы-потомки
+Переход к следующему элементу	Элементы-потомки	Переход к родителю	Добавить первым в элемент	Добавить последним в элемент	Добавить в середину элемента	Добавить перед элементом	Удалить элемент из DOM	Нормализация содержимого	Добавление текстового узла
+Добавление фрагмента документа	Псевдоселектор scope	Использование только событий мыши	Использование только событий клавиатуры	Использование только событий прокрутки	Использование только кастомных событий	Создание своего события	Отправка своего события	Проверка события на валидность	Предотвращение стандартного действия	Предотвращение распространения
+Немедленное прекращение распространения	Установка события	Установка события-атрибута	Удаление события-атрибута через шорткат	Замена события-атрибута через шорткат	Демонстрация различных фаз события	Создание одиночного слушателя	Детектирование фазы события	Детектирование типа события	Использование особых данных события	Демонстрация бессмысленности passive capture
+
+-->
+<html>
+  <head>
+    <script type="text/javascript"></script>
+    <style>
+      :root {
+        --main-color: #00539F
+      }
+      .icon {
+      	background-image: url("https://phonoteka.org/uploads/posts/2021-04/1619231982_15-phonoteka_org-p-yelovii-fon-25.jpg");
+      	width: 90px;
+      	height: 150px;
+      }
+      html {
+        font-size: 20px
+      }
+      body {
+        width: 70vw;
+        display: block;
+        margin: 0 auto;
+        padding: 0 20px 20px 20px;
+        border: 0.3cm solid #023868;
+        background-image:url("https://catherineasquithgallery.com/uploads/posts/2021-02/1613237152_222-p-fon-dlya-prezentatsii-svetlo-sinii-245.jpg");
+        min-height:120vh;
+        background-size: cover;
+      }
+
+      div > div {
+        padding: 50px;
+        background-color: rgba(255, 0, 0, 0.2);
+        text-align: center;
+        cursor: pointer;
+      }
+
+      .container {
+        height: 100px;
+        padding: 30px;
+        background: plum;
+      }
+      div > div {
+          height: 70px;
+          background: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Enter a number and click OK:</p>
+
+    <input id="id1" type="number" min="100" max="300" required>
+    <button onclick="myFunction()">OK</button>
+
+    <p>Enter the number between 100 and 300</p>
+    <p id="demo"></p>
+
+    <a href="/" id="link">ссылка</a>
+
+    <h1>The stopPropagation() Method</h1>
+    <p>Click DIV 1:</p>
+    <div onclick="func2()">DIV 2
+      <div onclick="func1(event)">DIV 1</div>
+    </div>
+    Stop propagation:
+    <input type="checkbox" id="check">
+
+    <!--<button id = "myBtn" onclick="myFunction3()">hello world</button>-->
+    <button id="try"> click me. Will be executed </button>
+    <button id="stopped">click me. Will not be executed</button>
+    <button id = "red" onclick="this.style.background='red'">Click to make me red</button>
+    <input type="button" id="button" value="no data">
+
+    <div id="phase"> div
+      <h3 id="phase"> h3
+        <h4 id="phase"> h4 </h4>
+      </h3>
+    </div>
+    <script>
+      "use strict";
+      let div1 = document.createElement("div");
+      div1.className = "headline";
+      console.log(div1.hasAttribute("class"));
+      document.body.append(div1);
+      let h1 = document.createElement("h1");
+      div1.appendChild(h1);
+      h1.textContent = "Hello from DOM";
+
+      var matches = document.querySelectorAll("div");
+      console.log(matches);
+      let element = document.querySelector("h1");
+      console.log(element);
+
+      let fragment = document.createDocumentFragment();
+      let parent = document.createElement("h3");
+      let sec1 = document.createElement("section");
+      let sec2 = document.createElement("section");
+      sec1.textContent = "this is section 1";
+      sec2.textContent = "this is section 2";
+
+      fragment.appendChild(sec1);
+      fragment.appendChild(sec2);
+      document.body.append(parent);
+      parent.appendChild(fragment);
+      console.log(parent.children);
+      console.log (parent.firstChild);
+
+      function handler1() {
+        alert('Спасибо!');
+      };
+      let button = document.createElement("button");
+      button.setAttribute("onclick", "onclick");
+      button.textContent = "Click me";
+      document.body.append(button);
+      button.addEventListener("click", handler1);
+      /*
+      div1.classList.remove("headline");
+      console.log(div1.hasAttribute("class"));
+      */
+      let div2 = document.createElement("div");
+      document.body.append(div2);
+      div2.className = "page light-theme";
+      div2.classList.remove("light-theme");
+      //console.log(div2);
+      div2.id = "div2";
+      div2.innerText = "This is div2 content";
+      document.getElementById("div2").innerHTML += "<i>This is div2 content in italics</i>";
+      console.log(div2);
+      // console.log(parent);
+
+      let nextSib1 = parent.nextSibling;
+      console.log(nextSib1); //button
+      let prevSib1 = div2.previousSibling;
+      console.log(prevSib1);
+      if (parent.nextSibling === div2.previousSibling)
+        console.log(true);
+
+      let childnodes = parent.childNodes;
+      console.log(childnodes);
+
+      if (childnodes[0] === parent.firstElementChild)
+        console.log(true);
+
+      let nextelsib = div1.nextElementSibling;
+      console.log('Siblings of div1:');
+      while (nextelsib) {
+        console.log(nextelsib.nodeName);
+        nextelsib = nextelsib.nextElementSibling;
+      }
+
+      console.log(div2.parentNode);
+
+      var p1 = document.createElement("p");
+      let h41 = document.createElement("h4");
+      p1.appendChild(h41);
+      var parentp1 = h41.parentNode;
+      let h42 = document.createElement("h4");
+      parentp1.insertBefore(h42, h41);
+      document.body.append(p1);
+
+      let p11 = document.createElement("p");
+      parentp1.insertBefore(p11, parentp1.lastChild);
+      console.log(parentp1);
+      p11.remove();
+
+      let textnode1 = document.createTextNode("hello from text node 1!");
+      let textnode2 = document.createTextNode("hello from text node 2!");
+      let textnode3 = document.createTextNode("hello from text node 3!");
+      let ptext = document.createElement("p");
+      ptext.appendChild(textnode1);
+      ptext.appendChild(textnode2);
+      ptext.appendChild(textnode3);
+      document.body.append(ptext);
+      ptext.normalize();
+      console.log(ptext);
+
+      let selected = parent.querySelectorAll(":scope > section")[0];
+      console.log (selected);
+
+      document.addEventListener('keydown', function(){
+          console.log('Success onkeydown');
+      });
+      document.addEventListener('scroll', function() {
+        console.log("прокрутка");
+      });
+      /*
+      document.addEventListener("userLogin", function(e) {
+      	console.log("Event is: ", e);
+      	console.log("Custom data is: ", e.detail);
+      });
+      var myEvent = new CustomEvent("userLogin", {
+      	detail: {
+      		username: "John"
+      	}
+      });
+      document.dispatchEvent(myEvent);
+
+      obj.addEventListener("cat", function(e) { process(e.detail) });
+
+      // create and dispatch the event
+      var event = new CustomEvent("cat", {
+        detail: {
+          hazcheeseburger: true
+        }
+      });
+      obj.dispatchEvent(event);
+      */
+      let div3 = document.createElement("div");
+      document.body.append(div3);
+      div3.id = "elem";
+      div3.innerText = "Hello from div3";
+      elem.addEventListener("hello", function(event) {
+        alert(event.detail.name);
+      });
+      var event = new CustomEvent("hello", {
+        detail: { name: "Welcome!" }
+      });
+      elem.dispatchEvent(event);
+
+      const myFunc = function(event) {
+        event.target.style.color = "green";
+      };
+      button.addEventListener("click", myFunc);
+
+      function myFunction() {
+        var inpObj = document.getElementById("id1");
+        if (!inpObj.checkValidity()) {
+            document.getElementById("demo").innerHTML = inpObj.validationMessage;
+        } else {
+            document.getElementById("demo").innerHTML = "Input OK";
+        }
+      }
+
+      let link = document.getElementById('link');
+      link.addEventListener('click', function(event) {
+      	event.preventDefault();
+      	alert('Вы не можете перейти по этой ссылке!');
+      });
+
+      function func1(event) {
+        alert("DIV 1");
+        if (document.getElementById("check").checked) {
+          event.stopPropagation();
+        }
+      }
+      function func2() {
+        alert("DIV 2");
+      }
+
+      let stop = document.getElementById("try");
+      stop.addEventListener("click", executed);
+      stop.addEventListener("click", notExecuted);
+
+      function executed(event) {
+      console.log ("Yes, it's executed!");
+          event.stopImmediatePropagation(); //немедленное прекращение распространения на примере "click"
+      }
+      function notExecuted() {
+          console.log ("not executed");
+      }
+
+
+      let red = document.getElementById("red");
+      //red.removeEventListener("click", make_red);
+
+
+      let button2 = document.querySelector('#button');
+      button2.addEventListener('click', func);
+
+      function func() {
+      	alert('!!!');
+      }
+      document.querySelector('#button').removeEventListener('click', func);
+
+      document.getElementById('red').setAttribute('onclick',"this.style.background='pink'");
+
+
+      for(let element of document.querySelectorAll("#phase")) {
+        element.addEventListener("click", () => console.log(`${element.tagName}`), {capture: true});
+        element.addEventListener("click", () => console.log(`${element.tagName}`));
+      }
+
+      document.getElementById("red").addEventListener("click", () => {
+            console.log("I work once!");
+      }, { once: true });
+
+      console.log(document.getElementById("red").type);
+      console.log(event.eventPhase);
+
+      document.body.addEventListener("click", (event)=> {
+                console.log ("click");
+                //event.preventDefault(); //error
+                }, {capture: false, passive: true});
+      console.log(event.timeStamp);
+
+    </script>
+  </body>
+</html>
+<svg version="1.1"
+     baseProfile="full"
+     width="300" height="200"
+     xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="black" />
+  <circle cx="150" cy="100" r="90" fill="blue" />
+</svg>

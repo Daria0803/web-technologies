@@ -5,13 +5,21 @@
   </head>
   <body>
     <script type="text/javascript">
+<<<<<<< HEAD
         "strict mode";
+=======
+        "use strict";
+>>>>>>> f88c4f0f5ddbb8a666bc750735cc4defa608b1c5
 
         function Animal(name) {
             this.name = name;
             this.canWalk = true;
             this.distance = n;
+<<<<<<< HEAD
             console.log(`Animal's name is ${this.name}`);
+=======
+            //console.log(`Animal's name is ${this.name}`);
+>>>>>>> f88c4f0f5ddbb8a666bc750735cc4defa608b1c5
         }
 
         var n = 5;
@@ -21,8 +29,14 @@
           console.log(`animal distance is ${this.distance}`);
         }
 
+<<<<<<< HEAD
         class Rabbit extends Animal {
             move(){
+=======
+        function Rabbit() {
+            Animal.call(this);
+            this.move = function(){
+>>>>>>> f88c4f0f5ddbb8a666bc750735cc4defa608b1c5
               console.log(`Rabbit moves with ${this.distance} distance`)
             }
         }
@@ -127,7 +141,11 @@
         });
 
         console.log(obj.a2);
+<<<<<<< HEAD
         obj.a2 = "changed";
+=======
+        //obj.a2 = "changed";
+>>>>>>> f88c4f0f5ddbb8a666bc750735cc4defa608b1c5
         console.log(obj.a2); // "Property a2 defined" (not "changed")
 
         let child = new Person('Sally');
@@ -136,7 +154,11 @@
         Object.defineProperty(child, 'height', {
           enumerable: true,
           configurable: true,
+<<<<<<< HEAD
           get: function() { return growth}
+=======
+          get: function() { return growth;}
+>>>>>>> f88c4f0f5ddbb8a666bc750735cc4defa608b1c5
         });
 
         console.log(child.height);
@@ -144,7 +166,11 @@
         Object.defineProperty(child, 'baby_teeth', {
           enumerable: false,
           configurable: false,
+<<<<<<< HEAD
           value: teeth_num = 13
+=======
+          value: 13
+>>>>>>> f88c4f0f5ddbb8a666bc750735cc4defa608b1c5
         });
 
         console.log(child.baby_teeth); // 13
@@ -173,7 +199,11 @@
         String.prototype.inBrackets = function() {
           console.log(`(${this})`);
         }
+<<<<<<< HEAD
         str = "comment";
+=======
+        let str = "comment";
+>>>>>>> f88c4f0f5ddbb8a666bc750735cc4defa608b1c5
         str.inBrackets();
         /**********************************/
 
@@ -194,6 +224,7 @@
         /***************************/
 
         /*Mixin*/
+<<<<<<< HEAD
         let sayHiMixin = {
           sayHi() {
             console.log(`Hello ${this.name}`);
@@ -225,6 +256,66 @@
         let user2 = new User2("Ivan");
         user2.sayBye();
 
+=======
+         let sayHiMixin = {
+           sayHi() {
+             console.log(`Hello ${this.name}`);
+           }
+         };
+
+         class User {
+           constructor(name) {
+             this.name = name;
+           }
+         }
+
+         Object.assign(User.prototype, sayHiMixin); //coping methods
+         let user = new User("Ivan");
+         user.sayHi();
+
+         let sayByeMixin = {
+           sayBye() {
+             console.log(`Bye ${this.name}`);
+           }
+         };
+
+         function User2(name) {
+           this.name = name;
+         }
+
+         Object.assign(User2.prototype, sayByeMixin);
+         let user2 = new User2("Ivan");
+         user2.sayBye();
+
+         let MyMixin = (superclass) => class extends superclass {
+            hello() {
+              console.log('hello from MyMixin');
+            }
+          };
+
+         class MyBaseClass { };
+         class MyClass extends MyMixin(MyBaseClass) { };
+         let c = new MyClass();
+         c.hello(); // "hello from MyMixin"
+
+         /***********************/
+         function Employee() {
+           this.name = "";
+           this.dept = "general";
+         }
+
+         function Manager() {
+            Employee.call(this);
+            this.reports = [];
+         }
+
+         Manager.prototype = Object.create( Employee.prototype );
+
+         var m = new Manager();
+
+         console.log(m instanceof Employee); //true
+         /**********************/
+>>>>>>> f88c4f0f5ddbb8a666bc750735cc4defa608b1c5
     </script>
   </body>
 </html>
